@@ -74,11 +74,14 @@ public class FormProcessor {
 
             .setId(FormIDs.ID_APPSETTING)
             .setTitle("設定")
-            .addFormElement(new Toggle("通知", !phone.isOffPush(player, appName)))
-            .addFormElement(new Toggle(TextFormat.RED + "アンインストール", false));
+            .addFormElement(new Toggle("通知", !phone.isOffPush(player, appName)));
 
         if (ApplicationManager.getApplicationByName(appName).getApplicationDescription().isDefault()) {
-            form.addFormElement(new Label(TextFormat.ITALIC + "\nこのアプリケーションはデフォルトでインストールされているため、アンインストールは無効です。"));
+            form.addFormElement(new Label(TextFormat.ITALIC + "このアプリケーションはデフォルトでインストールされているため、アンインストールは無効です。"));
+
+        } else {
+            form.addFormElement(new Toggle(TextFormat.RED + "アンインストール", false));
+            
         }
 
         return form;

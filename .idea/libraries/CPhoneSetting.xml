@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="CPhoneSetting">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/CPhoneSetting/CPhoneSetting.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
