@@ -37,7 +37,7 @@ public class FormProcessor {
     public static SimpleForm getApplicationMenu(CoSSePhone phone, Player player) {
         SimpleForm form = new SimpleForm()
             .setId(FormIDs.ID_APPMENU)
-            .setTitle("設定");
+            .setTitle("設定 - アプリケーション");
 
         for (String app : ApplicationManager.getPlayerApplications(player.getName())) {
             form.addButton(new Button(app) {
@@ -65,7 +65,7 @@ public class FormProcessor {
 
                 }
 
-                if ((boolean) response.get(1) && !ApplicationManager.getApplicationByName(appName).getApplicationDescription().isDefault()) {
+                if (!ApplicationManager.getApplicationByName(appName).getApplicationDescription().isDefault() && (boolean) response.get(1)) {
                     ApplicationManager.unInstallApplication(player.getName(), appName);
                     phone.pushNotify(player, CPhoneSetting.getInstance().getApplicationDescription().getName(), appName + "をアンインストールしました。");
                 }
@@ -73,7 +73,7 @@ public class FormProcessor {
         }
 
             .setId(FormIDs.ID_APPSETTING)
-            .setTitle("設定")
+            .setTitle("設定 - " + appName)
             .addFormElement(new Toggle("通知", !phone.isOffPush(player, appName)));
 
         if (ApplicationManager.getApplicationByName(appName).getApplicationDescription().isDefault()) {
@@ -81,7 +81,7 @@ public class FormProcessor {
 
         } else {
             form.addFormElement(new Toggle(TextFormat.RED + "アンインストール", false));
-            
+
         }
 
         return form;
